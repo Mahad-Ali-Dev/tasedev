@@ -1,0 +1,43 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime & OS
+.pnp*
+.DS_Store
+.env
+.env.*.local
+*.local
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+dist-ssr/
+public/build/
+.next/
+out/
+.cache/
+.vite/
+.parcel-cache/
+coverage/
+
+# Editor stuff
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+Thumbs.db
+Desktop.ini
