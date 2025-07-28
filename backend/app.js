@@ -9,6 +9,12 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
+app.get("/", (req, res) => {
+  res.status(200).send("Backend is live!");
+});
+
+
 // CORS middleware
 app.use(cors({
     origin: process.env.CORS_ORIGIN || "*",
