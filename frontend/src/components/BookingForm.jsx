@@ -73,7 +73,7 @@ export default function BookingForm({
 
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/v1/inquiry/submit",
+      "https://tase-portfolio.onrender.com/api/v1/inquiry/submit",
       payload,
       {
         headers: {
