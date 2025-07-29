@@ -142,7 +142,7 @@ const BookingSection = () => {
       comment: form.comment.trim(),
     };
 
-    console.log("📤 Sending payload:", payload);
+    console.log("Sending payload:", payload);
 
     try {
       const response = await axios.post(
@@ -156,16 +156,16 @@ const BookingSection = () => {
         }
       );
 
-      console.log("📨 Response received:", response.data);
+      console.log("Response received:", response.data);
 
       if (response.data.success) {
-        setSubmissionStatus('success');
+        setSubmissionStatus("success");
       } else {
-        setSubmissionStatus('error');
+        setSubmissionStatus("error");
       }
     } catch (error) {
-      console.error("❌ Error:", error);
-      setSubmissionStatus('error');
+      console.error("Error:", error);
+      setSubmissionStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -255,7 +255,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        Message Sent Successfully!
+        🎉 Message Sent Successfully!
       </motion.h3>
 
       <motion.p
@@ -322,7 +322,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        Connection Issue
+        😔 Connection Issue
       </motion.h3>
 
       <motion.p
@@ -401,7 +401,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        Server Configuration Issue
+        🔧 Server Configuration Issue
       </motion.h3>
 
       <motion.p
