@@ -151,11 +151,8 @@ const BookingSection = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json",
-            "Access-Control-Allow-Origin": "*",
           },
-          timeout: 15000, // Increased timeout to 15 seconds
-          withCredentials: false, // Disable credentials for CORS
+          timeout: 10000, // 10 second timeout
         }
       );
 
@@ -169,27 +166,14 @@ const BookingSection = () => {
     } catch (error) {
       console.error("❌ Full error object:", error);
 
-      // Check for specific error types
-      if (error.code === "ECONNABORTED") {
-        console.error("❌ Request timeout - server took too long to respond");
-        setSubmissionStatus("error");
-      } else if (error.response) {
+      if (error.response) {
         // Server responded with error status
         console.error("❌ Server Error Response:", error.response.data);
         console.error("❌ Status Code:", error.response.status);
         setSubmissionStatus("error");
       } else if (error.request) {
-        // Request made but no response received (CORS, network, etc.)
+        // Request made but no response received
         console.error("❌ No Response from Server:", error.request);
-        console.error(
-          "❌ This usually indicates a CORS issue or network problem"
-        );
-
-        // Check if it's a CORS issue
-        if (error.request.status === 0) {
-          console.error("❌ CORS Error Detected - Request blocked by browser");
-        }
-
         setSubmissionStatus("error");
       } else {
         // Something else caused the error
@@ -285,7 +269,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        🎉 Message Sent Successfully!
+        Message Sent Successfully!
       </motion.h3>
 
       <motion.p
@@ -352,7 +336,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        😔 Connection Issue
+        Connection Issue
       </motion.h3>
 
       <motion.p
