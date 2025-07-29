@@ -24,7 +24,6 @@ const techIcons = [
   "/TechStack/node-js-seeklogo(1)-min.png",
   "/TechStack/typescript-seeklogo-min.png",
   "/TechStack/ahrefs-seo-tool-seeklogo-min.png",
-  "/TechStack/next-js-seeklogo-min.png",
   "/TechStack/wordpress-icon-seeklogo-min.png",
   "/TechStack/shopify-seeklogo-min.png",
   "/TechStack/docker-seeklogo-min.png",
@@ -48,65 +47,85 @@ const techIcons = [
   "/TechStack/webflow-2023-seeklogo-min.png",
   "/TechStack/vercel-seeklogo-min.png",
   "/TechStack/terraform-seeklogo-min.png",
-  "/TechStack/terraform-min.png",
   "/TechStack/tailwind-css-seeklogo-min.png",
   "/TechStack/svelte-seeklogo-min.png",
   "/TechStack/n8n-seeklogo-min.png",
-  "/TechStack/icons8-react-480-min.png", // repeated for demo
 ];
 
 const shadowColors = [
-  "#7952B3",
-  "#D82C20",
-  "#43B02A",
-  "#F5792A",
-  "#41B883",
-  "#DD0031",
-  "#00758F",
-  "#000000",
-  "#FF9A00",
-  "#F24E1E",
-  "#FF9900",
-  "#000000",
-  "#FFCA28",
-  "#007FFF",
-  "#F0DB4F",
-  "#02569B",
-  "#336791",
-  "#43853D",
-  "#3178C6",
-  "#00C3E6",
-  "#000000",
-  "#21759B",
-  "#95BF47",
-  "#2496ED",
-  "#3572A5",
-  "#FC6D26",
-  "#001E36",
-  "#00599C",
-  "#178600",
-  "#F24E1E",
-  "#4DB33D",
-  "#61DBFB",
-  "#9B51E0",
-  "#4285F4",
-  "#4285F4",
-  "#007396",
-  "#A97BFF",
-  "#326CE5",
-  "#1877F2",
-  "#4353FF",
-  "#000000",
-  "#7B42BC",
-  "#06B6D4",
-  "#FF3E00",
-  "#F37626",
+  "#7952B3", // Bootstrap
+  "#DC382D", // Redis
+  "#43B02A", // Selenium
+  "#F5792A", // Blender
+  "#42B883", // Vue.js
+  "#DD0031", // Angular
+  "#00758F", // MySQL
+  "#000000", // Next.js
+  "#FF9A00", // Adobe Illustrator
+  "#F24E1E", // Adobe Premiere
+  "#F24E1E", // Figma
+  "#FF9900", // AWS
+  "#000000", // Express.js
+  "#FFCA28", // Firebase
+  "#0078D4", // Microsoft Azure
+  "#F7DF1E", // JavaScript
+  "#02569B", // Flutter
+  "#336791", // PostgreSQL
+  "#339933", // Node.js
+  "#3178C6", // TypeScript
+  "#FF6B35", // Ahrefs
+  "#21759B", // WordPress
+  "#95BF47", // Shopify
+  "#2496ED", // Docker
+  "#3776AB", // Python
+  "#FC6D26", // GitLab
+  "#31A8FF", // Adobe Photoshop
+  "#00599C", // C++
+  "#178600", // C#
+  "#FF6C37", // REST API
+  "#000000", // Splunk
+  "#47A248", // MongoDB
+  "#61DAFB", // React
+  "#0055FF", // Framer Motion
+  "#4285F4", // Google Ads
+  "#4285F4", // Google Cloud
+  "#ED8B00", // Java
+  "#7F52FF", // Kotlin
+  "#6DB33F", // Spring Boot
+  "#326CE5", // Kubernetes
+  "#1877F2", // Meta/Facebook
+  "#4353FF", // Webflow
+  "#000000", // Vercel
+  "#7B42BC", // Terraform
+  "#06B6D4", // Tailwind CSS
+  "#FF3E00", // Svelte
+  "#FF6C37", // n8n
 ];
 
 const OurTechStack = () => (
   <>
     {/* Our Tech Stack Section (dark, attached to services) */}
-    <section className="w-full min-h-[80vh] bg-[#181818] flex flex-col items-center justify-center py-10 px-2 sm:px-4">
+    <section
+      className="w-full min-h-[80vh] bg-[#181818] flex flex-col items-center justify-center py-10 px-2 sm:px-4 relative overflow-hidden"
+      style={{
+        background: "#181818",
+      }}
+    >
+      {/* Decorative background blobs */}
+      <div
+        className="absolute -top-24 -left-24 w-96 h-96 opacity-30 rounded-full blur-3xl z-0"
+        style={{
+          background:
+            "radial-gradient(circle at 30% 30%, #B8BCC3 0%, #23232B 100%)",
+        }}
+      />
+      <div
+        className="absolute -bottom-24 -right-24 w-96 h-96 opacity-30 rounded-full blur-3xl z-0"
+        style={{
+          background:
+            "radial-gradient(circle at 70% 70%, #DFE0E2 0%, #23232B 100%)",
+        }}
+      />
       <div className="max-w-2xl w-full mx-auto text-center mb-8">
         <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 text-white text-center break-words">
           Our Tech Stack
@@ -120,7 +139,7 @@ const OurTechStack = () => (
       </div>
       {/* Card with Icon Grid */}
       <div className="bg-[#181818] rounded-xl p-2 sm:p-4 md:p-8 max-w-6xl w-full flex flex-col items-center justify-center">
-        <div className="grid grid-cols-6 xs:grid-cols-6 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2 sm:gap-3 md:gap-4 items-center justify-center w-full">
+        <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4 w-full">
           {techIcons.map((icon, i) => (
             <motion.div
               key={i}
@@ -129,7 +148,7 @@ const OurTechStack = () => (
                 boxShadow: `0 0 18px ${shadowColors[i % shadowColors.length]}`,
               }}
               whileTap={{ scale: 0.97 }}
-              className="aspect-square flex items-center justify-center rounded-lg bg-[#23272b] border border-[#232323] transition duration-300 group w-full h-full min-w-0 min-h-0"
+              className="aspect-square flex items-center justify-center rounded-lg bg-[#23272b] border border-[#232323] transition duration-300 group w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28"
             >
               <img
                 src={icon}
