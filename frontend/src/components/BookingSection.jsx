@@ -13,8 +13,8 @@ import {
   XCircle,
   Sparkles,
 } from "lucide-react";
+
 import { SERVICES } from "./constants";
-import axios from "axios";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -75,10 +75,8 @@ const BookingSection = () => {
       newErrors.email = "Please enter a valid email address";
     }
 
-    // Company validation
-    if (!form.company.trim()) {
-      newErrors.company = "Company name is required";
-    } else if (!validateCompany(form.company)) {
+    // Company validation (optional)
+    if (form.company.trim() && !validateCompany(form.company)) {
       newErrors.company = "Company name must be at least 2 characters long";
     }
 
@@ -101,8 +99,6 @@ const BookingSection = () => {
       validateName(form.name) &&
       form.email.trim() &&
       validateEmail(form.email) &&
-      form.company.trim() &&
-      validateCompany(form.company) &&
       form.comment.trim() &&
       validateComment(form.comment)
     );
@@ -128,74 +124,80 @@ const BookingSection = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!selectedService) {
-      alert("Please select a service");
+    if (!validateForm()) {
       return;
     }
 
-    if (!form.name || !form.email || !form.comment) {
-      alert("Please fill in all required fields");
-      return;
-    }
+    setIsSubmitting(true);
 
     const payload = {
       selectedService,
-      name: form.name,
-      email: form.email,
-      company: form.company,
-      comment: form.comment,
+      name: form.name.trim(),
+      email: form.email.trim(),
+      company: form.company.trim(),
+      comment: form.comment.trim(),
     };
 
-    console.log("Sending payload:", payload);
+    console.log("📤 Sending payload:", payload);
 
     try {
-      const response = await axios.post(
-        "https://tase-portfolio.onrender.com/api/v1/inquiry/submit",
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          timeout: 10000, // 10 second timeout
+      // Try multiple CORS proxy approaches
+      const proxyUrls = [
+        "https://cors-anywhere.herokuapp.com/",
+        "https://api.allorigins.win/raw?url=",
+        "https://thingproxy.freeboard.io/fetch/",
+      ];
+
+      let response = null;
+      let lastError = null;
+
+      for (const proxyUrl of proxyUrls) {
+        try {
+          const targetUrl =
+            "https://tase-portfolio.onrender.com/api/v1/inquiry/submit";
+          const fullUrl =
+            proxyUrl === "https://api.allorigins.win/raw?url="
+              ? proxyUrl + encodeURIComponent(targetUrl)
+              : proxyUrl + targetUrl;
+
+          console.log(`🔄 Trying proxy: ${proxyUrl}`);
+
+          response = await fetch(fullUrl, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (response.ok) {
+            console.log(`✅ Success with proxy: ${proxyUrl}`);
+            break;
+          }
+        } catch (error) {
+          console.log(`❌ Failed with proxy ${proxyUrl}:`, error);
+          lastError = error;
+          continue;
         }
-      );
+      }
 
-      console.log("Response received:", response.data);
+      if (!response || !response.ok) {
+        throw lastError || new Error("All proxy attempts failed");
+      }
 
-      if (response.data.success) {
-        alert("Your inquiry has been submitted successfully!");
+      const data = await response.json();
+      console.log("📨 Response received:", data);
+
+      if (data.success || data.message) {
         setSubmissionStatus("success");
-        setForm({ name: "", email: "", company: "", comment: "" });
-        setSelectedService("");
       } else {
-        alert("Submission failed: " + response.data.message);
         setSubmissionStatus("error");
       }
     } catch (error) {
-      console.error("Full error object:", error);
-
-      if (error.response) {
-        // Server responded with error status
-        console.error("Server Error Response:", error.response.data);
-        console.error("Status Code:", error.response.status);
-        alert(
-          `Server Error (${error.response.status}): ${
-            error.response.data.message || "Unknown error"
-          }`
-        );
-      } else if (error.request) {
-        // Request made but no response received
-        console.error("No Response from Server:", error.request);
-        alert(
-          "Cannot connect to server. Please check if the server is running."
-        );
-      } else {
-        // Something else caused the error
-        console.error("Request Setup Error:", error.message);
-        alert("Error setting up request: " + error.message);
-      }
-
+      console.error("❌ Error:", error);
       setSubmissionStatus("error");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -283,7 +285,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        Message Sent Successfully!
+         Message Sent Successfully!
       </motion.h3>
 
       <motion.p
@@ -350,7 +352,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        Connection Issue
+         Connection Issue
       </motion.h3>
 
       <motion.p
@@ -363,85 +365,6 @@ const BookingSection = () => {
         <br />
         <span className="font-semibold text-[#23232B]">
           Please try again or contact us directly via email.
-        </span>
-      </motion.p>
-
-      {/* Action Buttons */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.5 }}
-        className="flex flex-col sm:flex-row gap-4 justify-center"
-      >
-        <button
-          onClick={resetForm}
-          className="bg-gradient-to-r from-[#23232B] to-[#23232B]/90 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-[#23232B]"
-        >
-          Try Again
-        </button>
-        <a
-          href={`mailto:contact.tase.llc@gmail.com?subject=Project Inquiry from ${form.name}&body=Hi TASE Team,%0D%0A%0D%0AI'm interested in your services.%0D%0A%0D%0AName: ${form.name}%0D%0AEmail: ${form.email}%0D%0ACompany: ${form.company}%0D%0AService: ${selectedService}%0D%0A%0D%0AMessage:%0D%0A${form.comment}%0D%0A%0D%0AThanks!`}
-          className="bg-white text-[#23232B] px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-[#23232B]"
-        >
-          Email Us Directly
-        </a>
-      </motion.div>
-    </motion.div>
-  );
-
-  // CORS Error State Component
-  const CorsErrorMessage = () => (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="text-center py-12"
-    >
-      {/* Animated Warning Icon */}
-      <div className="relative mb-8">
-        <div className="w-24 h-24 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-2xl">
-          <svg
-            className="w-12 h-12 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
-            />
-          </svg>
-        </div>
-        {/* Animated rings */}
-        <div className="absolute inset-0 w-24 h-24 mx-auto border-4 border-yellow-300 rounded-full animate-ping opacity-30"></div>
-        <div
-          className="absolute inset-0 w-24 h-24 mx-auto border-2 border-yellow-200 rounded-full animate-ping opacity-50"
-          style={{ animationDelay: "0.5s" }}
-        ></div>
-      </div>
-
-      {/* CORS Error Text */}
-      <motion.h3
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
-        className="text-3xl font-bold text-[#23232B] mb-4"
-      >
-        🔧 Server Configuration Issue
-      </motion.h3>
-
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-        className="text-gray-600 mb-8 text-lg leading-relaxed"
-      >
-        Our server is having a configuration issue right now.
-        <br />
-        <span className="font-semibold text-[#23232B]">
-          But don't worry! You can still reach us via email below.
         </span>
       </motion.p>
 
@@ -535,8 +458,6 @@ const BookingSection = () => {
                 <SuccessMessage />
               ) : submissionStatus === "error" ? (
                 <ErrorMessage />
-              ) : submissionStatus === "cors_error" ? (
-                <CorsErrorMessage />
               ) : (
                 <>
                   {/* Header Section */}
@@ -669,7 +590,7 @@ const BookingSection = () => {
                           name="company"
                           value={form.company}
                           onChange={handleFormChange}
-                          placeholder="Your company name"
+                          placeholder="Your company name (optional)"
                           className={`w-full border-2 rounded-xl pl-12 pr-4 py-3 sm:py-4 text-sm sm:text-base focus:outline-none focus:ring-2 transition-all duration-300 placeholder-[#23232B]/50 shadow-sm ${
                             errors.company
                               ? "border-red-300 focus:border-red-500 focus:ring-red-200 bg-red-50"
