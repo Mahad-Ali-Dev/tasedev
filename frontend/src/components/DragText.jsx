@@ -10,6 +10,31 @@ function DragText({ showTagline = true, splitRows = false }) {
   const letterRefs = useRef([]);
   const dragLabelRef = useRef(null);
   const [showDrag, setShowDrag] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+
+  // Function to prevent page scrolling
+  const preventScroll = (e) => {
+    if (isDragging) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
+  // Function to block scroll when dragging starts
+  const blockScroll = () => {
+    setIsDragging(true);
+    document.body.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+    document.body.style.userSelect = "none";
+  };
+
+  // Function to restore scroll when dragging ends
+  const restoreScroll = () => {
+    setIsDragging(false);
+    document.body.style.overflow = "";
+    document.body.style.touchAction = "";
+    document.body.style.userSelect = "";
+  };
 
   useEffect(() => {
     const moveDragLabel = (e) => {
@@ -26,6 +51,35 @@ function DragText({ showTagline = true, splitRows = false }) {
   }, []);
 
   useEffect(() => {
+    let isDragging = false;
+    let originalBodyStyle = "";
+
+    // Function to prevent page scrolling
+    const preventScroll = (e) => {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    };
+
+    // Function to block scrolling
+    const blockScroll = () => {
+      isDragging = true;
+      originalBodyStyle = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+      document.body.style.userSelect = "none";
+    };
+
+    // Function to restore scrolling
+    const restoreScroll = () => {
+      isDragging = false;
+      document.body.style.overflow = originalBodyStyle;
+      document.body.style.touchAction = "";
+      document.body.style.userSelect = "";
+    };
+
     letterRefs.current.forEach((ref, i) => {
       if (!ref) return;
 
@@ -35,6 +89,9 @@ function DragText({ showTagline = true, splitRows = false }) {
       Draggable.create(proxy, {
         type: "x,y",
         inertia: true,
+        onDragStart() {
+          blockScroll();
+        },
         onDrag() {
           gsap.to(ref, {
             x: this.x,
@@ -56,6 +113,9 @@ function DragText({ showTagline = true, splitRows = false }) {
             dragLabelRef.current.style.top = `${this.pointerY - 10}px`;
           }
         },
+        onDragEnd() {
+          restoreScroll();
+        },
       });
 
       const dragInstance = Draggable.get(proxy);
@@ -68,7 +128,20 @@ function DragText({ showTagline = true, splitRows = false }) {
       ref.addEventListener("pointerleave", () => setShowDrag(false));
     });
 
+    // Add event listeners to prevent scrolling during drag
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+    document.addEventListener("wheel", preventScroll, { passive: false });
+    document.addEventListener("scroll", preventScroll, { passive: false });
+
     return () => {
+      // Clean up event listeners
+      document.removeEventListener("touchmove", preventScroll);
+      document.removeEventListener("wheel", preventScroll);
+      document.removeEventListener("scroll", preventScroll);
+
+      // Restore body styles
+      restoreScroll();
+
       letterRefs.current.forEach((ref) => {
         if (ref) ref.replaceWith(ref.cloneNode(true));
       });
