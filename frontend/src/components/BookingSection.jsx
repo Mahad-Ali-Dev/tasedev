@@ -128,18 +128,22 @@ const BookingSection = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm()) {
+    if (!selectedService) {
+      alert("Please select a service");
       return;
     }
 
-    setIsSubmitting(true);
+    if (!form.name || !form.email || !form.comment) {
+      alert("Please fill in all required fields");
+      return;
+    }
 
     const payload = {
       selectedService,
-      name: form.name.trim(),
-      email: form.email.trim(),
-      company: form.company.trim(),
-      comment: form.comment.trim(),
+      name: form.name,
+      email: form.email,
+      company: form.company,
+      comment: form.comment,
     };
 
     console.log("Sending payload:", payload);
@@ -152,22 +156,46 @@ const BookingSection = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          timeout: 10000,
+          timeout: 10000, // 10 second timeout
         }
       );
 
       console.log("Response received:", response.data);
 
       if (response.data.success) {
+        alert("Your inquiry has been submitted successfully!");
         setSubmissionStatus("success");
+        setForm({ name: "", email: "", company: "", comment: "" });
+        setSelectedService("");
       } else {
+        alert("Submission failed: " + response.data.message);
         setSubmissionStatus("error");
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Full error object:", error);
+
+      if (error.response) {
+        // Server responded with error status
+        console.error("Server Error Response:", error.response.data);
+        console.error("Status Code:", error.response.status);
+        alert(
+          `Server Error (${error.response.status}): ${
+            error.response.data.message || "Unknown error"
+          }`
+        );
+      } else if (error.request) {
+        // Request made but no response received
+        console.error("No Response from Server:", error.request);
+        alert(
+          "Cannot connect to server. Please check if the server is running."
+        );
+      } else {
+        // Something else caused the error
+        console.error("Request Setup Error:", error.message);
+        alert("Error setting up request: " + error.message);
+      }
+
       setSubmissionStatus("error");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -255,7 +283,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        🎉 Message Sent Successfully!
+        Message Sent Successfully!
       </motion.h3>
 
       <motion.p
@@ -322,7 +350,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        😔 Connection Issue
+        Connection Issue
       </motion.h3>
 
       <motion.p
