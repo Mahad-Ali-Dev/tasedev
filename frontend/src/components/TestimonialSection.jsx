@@ -183,7 +183,27 @@ const TestimonialSection = () => {
   const columns = [1, 2, 3];
 
   return (
-    <section className="w-full flex flex-col items-center justify-center py-20 bg-[#0D0D0D] px-4">
+    <section
+      className="w-full flex flex-col items-center justify-center py-20 bg-[#181818] px-4 relative overflow-hidden"
+      style={{
+        background: "#181818",
+      }}
+    >
+      {/* Decorative background blobs */}
+      <div
+        className="absolute -top-24 -left-24 w-96 h-96 opacity-30 rounded-full blur-3xl z-0"
+        style={{
+          background:
+            "radial-gradient(circle at 30% 30%, #B8BCC3 0%, #23232B 100%)",
+        }}
+      />
+      <div
+        className="absolute -bottom-24 -right-24 w-96 h-96 opacity-30 rounded-full blur-3xl z-0"
+        style={{
+          background:
+            "radial-gradient(circle at 70% 70%, #DFE0E2 0%, #23232B 100%)",
+        }}
+      />
       <div className="mb-12 text-center">
         <h2 className="text-[40px] font-bold text-[#f5f5f5f5] leading-tight">
           Elevating ideas with bold teams
