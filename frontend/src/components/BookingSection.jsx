@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { SERVICES } from "./constants";
+import axios from "axios";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -144,35 +145,27 @@ const BookingSection = () => {
     console.log("📤 Sending payload:", payload);
 
     try {
-      // Use CORS proxy to bypass the CORS restriction
-      const proxyUrl = "https://api.allorigins.win/raw?url=";
-      const targetUrl = encodeURIComponent(
-        "https://tase-portfolio.onrender.com/api/v1/inquiry/submit"
+      const response = await axios.post(
+        "https://tase-portfolio.onrender.com/api/v1/inquiry/submit",
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          timeout: 10000,
+        }
       );
 
-      const response = await fetch(proxyUrl + targetUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      console.log("📨 Response received:", response.data);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log("📨 Response received:", data);
-
-      if (data.success) {
-        setSubmissionStatus("success");
+      if (response.data.success) {
+        setSubmissionStatus('success');
       } else {
-        setSubmissionStatus("error");
+        setSubmissionStatus('error');
       }
     } catch (error) {
       console.error("❌ Error:", error);
-      setSubmissionStatus("error");
+      setSubmissionStatus('error');
     } finally {
       setIsSubmitting(false);
     }
@@ -262,7 +255,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        🎉 Message Sent Successfully!
+        Message Sent Successfully!
       </motion.h3>
 
       <motion.p
@@ -329,7 +322,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        😔 Connection Issue
+        Connection Issue
       </motion.h3>
 
       <motion.p
@@ -408,7 +401,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        🔧 Server Configuration Issue
+        Server Configuration Issue
       </motion.h3>
 
       <motion.p
