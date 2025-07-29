@@ -13,11 +13,36 @@ function RevealShowreel() {
   const [revealed, setRevealed] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showPlay, setShowPlay] = useState(false);
+  const [drawing, setDrawing] = useState(false);
+
+  // Function to prevent page scrolling
+  const preventScroll = (e) => {
+    if (drawing) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
+  // Function to block scroll when drawing starts
+  const blockScroll = () => {
+    setDrawing(true);
+    document.body.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+    document.body.style.userSelect = "none";
+  };
+
+  // Function to restore scroll when drawing ends
+  const restoreScroll = () => {
+    setDrawing(false);
+    document.body.style.overflow = "";
+    document.body.style.touchAction = "";
+    document.body.style.userSelect = "";
+  };
 
   useEffect(() => {
     if (revealed) return; // Don't reapply mask if already revealed
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
     const width = (canvas.width = canvas.offsetWidth);
     const height = (canvas.height = canvas.offsetHeight);
 
@@ -27,6 +52,31 @@ function RevealShowreel() {
     ctx.globalCompositeOperation = "destination-out";
 
     let drawing = false;
+    let originalBodyStyle = "";
+
+    // Function to prevent page scrolling
+    const preventScroll = (e) => {
+      if (drawing) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    };
+
+    // Function to block scrolling
+    const blockScroll = () => {
+      originalBodyStyle = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+      document.body.style.userSelect = "none";
+    };
+
+    // Function to restore scrolling
+    const restoreScroll = () => {
+      document.body.style.overflow = originalBodyStyle;
+      document.body.style.touchAction = "";
+      document.body.style.userSelect = "";
+    };
 
     const getPos = (e) => {
       const rect = canvas.getBoundingClientRect();
@@ -45,11 +95,13 @@ function RevealShowreel() {
 
     const start = (e) => {
       drawing = true;
+      blockScroll();
       draw(e);
     };
 
     const stop = () => {
       drawing = false;
+      restoreScroll();
       // Check how much is scratched
       const imageData = ctx.getImageData(0, 0, width, height);
       let transparent = 0;
@@ -69,8 +121,14 @@ function RevealShowreel() {
     canvas.addEventListener("touchmove", draw);
     canvas.addEventListener("touchend", stop);
 
+    // Add event listeners to prevent scrolling during scratching
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+    document.addEventListener("wheel", preventScroll, { passive: false });
+    document.addEventListener("scroll", preventScroll, { passive: false });
+
     // Cleanup
     return () => {
+      // Clean up canvas event listeners
       canvas.removeEventListener("mousedown", start);
       canvas.removeEventListener("mousemove", draw);
       canvas.removeEventListener("mouseup", stop);
@@ -78,6 +136,14 @@ function RevealShowreel() {
       canvas.removeEventListener("touchstart", start);
       canvas.removeEventListener("touchmove", draw);
       canvas.removeEventListener("touchend", stop);
+
+      // Clean up scroll prevention event listeners
+      document.removeEventListener("touchmove", preventScroll);
+      document.removeEventListener("wheel", preventScroll);
+      document.removeEventListener("scroll", preventScroll);
+
+      // Restore body styles
+      restoreScroll();
     };
   }, [revealed]);
 
