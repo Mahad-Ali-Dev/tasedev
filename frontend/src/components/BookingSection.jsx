@@ -13,7 +13,7 @@ import {
   XCircle,
   Sparkles,
 } from "lucide-react";
-
+import axios from "axios";
 import { SERVICES } from "./constants";
 
 const fadeInUp = {
@@ -141,61 +141,41 @@ const BookingSection = () => {
     console.log("📤 Sending payload:", payload);
 
     try {
-      // Try multiple CORS proxy approaches
-      const proxyUrls = [
-        "https://cors-anywhere.herokuapp.com/",
-        "https://api.allorigins.win/raw?url=",
-        "https://thingproxy.freeboard.io/fetch/",
-      ];
-
-      let response = null;
-      let lastError = null;
-
-      for (const proxyUrl of proxyUrls) {
-        try {
-          const targetUrl =
-            "https://tase-portfolio.onrender.com/api/v1/inquiry/submit";
-          const fullUrl =
-            proxyUrl === "https://api.allorigins.win/raw?url="
-              ? proxyUrl + encodeURIComponent(targetUrl)
-              : proxyUrl + targetUrl;
-
-          console.log(`🔄 Trying proxy: ${proxyUrl}`);
-
-          response = await fetch(fullUrl, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          });
-
-          if (response.ok) {
-            console.log(`✅ Success with proxy: ${proxyUrl}`);
-            break;
-          }
-        } catch (error) {
-          console.log(`❌ Failed with proxy ${proxyUrl}:`, error);
-          lastError = error;
-          continue;
+      const response = await axios.post(
+        "https://tase-portfolio.onrender.com/api/v1/inquiry/submit",
+        payload,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          timeout: 10000, // 10 second timeout
         }
-      }
+      );
 
-      if (!response || !response.ok) {
-        throw lastError || new Error("All proxy attempts failed");
-      }
+      console.log("📨 Response received:", response.data);
 
-      const data = await response.json();
-      console.log("📨 Response received:", data);
-
-      if (data.success || data.message) {
+      if (response.data.success) {
         setSubmissionStatus("success");
       } else {
         setSubmissionStatus("error");
       }
     } catch (error) {
-      console.error("❌ Error:", error);
-      setSubmissionStatus("error");
+      console.error("❌ Full error object:", error);
+
+      if (error.response) {
+        // Server responded with error status
+        console.error("❌ Server Error Response:", error.response.data);
+        console.error("❌ Status Code:", error.response.status);
+        setSubmissionStatus("error");
+      } else if (error.request) {
+        // Request made but no response received
+        console.error("❌ No Response from Server:", error.request);
+        setSubmissionStatus("error");
+      } else {
+        // Something else caused the error
+        console.error("❌ Request Setup Error:", error.message);
+        setSubmissionStatus("error");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -285,7 +265,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-         Message Sent Successfully!
+        🎉 Message Sent Successfully!
       </motion.h3>
 
       <motion.p
@@ -352,7 +332,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-         Connection Issue
+        😔 Connection Issue
       </motion.h3>
 
       <motion.p
