@@ -144,7 +144,13 @@ const BookingSection = () => {
     console.log("📤 Sending payload:", payload);
 
     try {
-      const response = await fetch("https://tase-portfolio.onrender.com/api/v1/inquiry/submit", {
+      // Use CORS proxy to bypass the CORS restriction
+      const proxyUrl = "https://api.allorigins.win/raw?url=";
+      const targetUrl = encodeURIComponent(
+        "https://tase-portfolio.onrender.com/api/v1/inquiry/submit"
+      );
+
+      const response = await fetch(proxyUrl + targetUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -160,13 +166,13 @@ const BookingSection = () => {
       console.log("📨 Response received:", data);
 
       if (data.success) {
-        setSubmissionStatus('success');
+        setSubmissionStatus("success");
       } else {
-        setSubmissionStatus('error');
+        setSubmissionStatus("error");
       }
     } catch (error) {
       console.error("❌ Error:", error);
-      setSubmissionStatus('error');
+      setSubmissionStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -256,7 +262,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        Message Sent Successfully!
+        🎉 Message Sent Successfully!
       </motion.h3>
 
       <motion.p
@@ -323,7 +329,7 @@ const BookingSection = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        Connection Issue
+        😔 Connection Issue
       </motion.h3>
 
       <motion.p
