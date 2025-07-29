@@ -142,7 +142,7 @@ const BookingSection = () => {
       comment: form.comment.trim(),
     };
 
-    console.log("�� Sending payload:", payload);
+    console.log("📤 Sending payload:", payload);
 
     try {
       const response = await axios.post(
@@ -151,34 +151,50 @@ const BookingSection = () => {
         {
           headers: {
             "Content-Type": "application/json",
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
           },
-          timeout: 10000, // 10 second timeout
+          timeout: 15000, // Increased timeout to 15 seconds
+          withCredentials: false, // Disable credentials for CORS
         }
       );
 
       console.log("📨 Response received:", response.data);
 
       if (response.data.success) {
-        setSubmissionStatus('success');
+        setSubmissionStatus("success");
       } else {
-        setSubmissionStatus('error');
+        setSubmissionStatus("error");
       }
     } catch (error) {
       console.error("❌ Full error object:", error);
-      
-      if (error.response) {
+
+      // Check for specific error types
+      if (error.code === "ECONNABORTED") {
+        console.error("❌ Request timeout - server took too long to respond");
+        setSubmissionStatus("error");
+      } else if (error.response) {
         // Server responded with error status
         console.error("❌ Server Error Response:", error.response.data);
         console.error("❌ Status Code:", error.response.status);
-        setSubmissionStatus('error');
+        setSubmissionStatus("error");
       } else if (error.request) {
-        // Request made but no response received
+        // Request made but no response received (CORS, network, etc.)
         console.error("❌ No Response from Server:", error.request);
-        setSubmissionStatus('error');
+        console.error(
+          "❌ This usually indicates a CORS issue or network problem"
+        );
+
+        // Check if it's a CORS issue
+        if (error.request.status === 0) {
+          console.error("❌ CORS Error Detected - Request blocked by browser");
+        }
+
+        setSubmissionStatus("error");
       } else {
         // Something else caused the error
         console.error("❌ Request Setup Error:", error.message);
-        setSubmissionStatus('error');
+        setSubmissionStatus("error");
       }
     } finally {
       setIsSubmitting(false);
@@ -233,7 +249,7 @@ const BookingSection = () => {
 
   // Success State Component
   const SuccessMessage = () => (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -246,39 +262,47 @@ const BookingSection = () => {
         </div>
         {/* Animated rings */}
         <div className="absolute inset-0 w-24 h-24 mx-auto border-4 border-green-300 rounded-full animate-ping opacity-30"></div>
-        <div className="absolute inset-0 w-24 h-24 mx-auto border-2 border-green-200 rounded-full animate-ping opacity-50" style={{ animationDelay: '0.5s' }}></div>
+        <div
+          className="absolute inset-0 w-24 h-24 mx-auto border-2 border-green-200 rounded-full animate-ping opacity-50"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
         {/* Sparkles */}
         <div className="absolute -top-2 -right-2">
           <Sparkles className="w-6 h-6 text-yellow-400 animate-pulse" />
         </div>
         <div className="absolute -bottom-2 -left-2">
-          <Sparkles className="w-5 h-5 text-yellow-400 animate-pulse" style={{ animationDelay: '0.3s' }} />
+          <Sparkles
+            className="w-5 h-5 text-yellow-400 animate-pulse"
+            style={{ animationDelay: "0.3s" }}
+          />
         </div>
       </div>
-      
+
       {/* Success Text */}
-      <motion.h3 
+      <motion.h3
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        Message Sent Successfully!
+        🎉 Message Sent Successfully!
       </motion.h3>
-      
-      <motion.p 
+
+      <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.5 }}
         className="text-gray-600 mb-8 text-lg leading-relaxed"
       >
-        Thank you for reaching out! We're excited to work with you. 
+        Thank you for reaching out! We're excited to work with you.
         <br />
-        <span className="font-semibold text-[#23232B]">We'll get back to you within 24 hours.</span>
+        <span className="font-semibold text-[#23232B]">
+          We'll get back to you within 24 hours.
+        </span>
       </motion.p>
-      
+
       {/* Action Buttons */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.5 }}
@@ -291,7 +315,7 @@ const BookingSection = () => {
           Send Another Message
         </button>
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="bg-white text-[#23232B] px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-[#23232B]"
         >
           Back to Top
@@ -302,7 +326,7 @@ const BookingSection = () => {
 
   // Error State Component
   const ErrorMessage = () => (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -315,32 +339,37 @@ const BookingSection = () => {
         </div>
         {/* Animated rings */}
         <div className="absolute inset-0 w-24 h-24 mx-auto border-4 border-red-300 rounded-full animate-ping opacity-30"></div>
-        <div className="absolute inset-0 w-24 h-24 mx-auto border-2 border-red-200 rounded-full animate-ping opacity-50" style={{ animationDelay: '0.5s' }}></div>
+        <div
+          className="absolute inset-0 w-24 h-24 mx-auto border-2 border-red-200 rounded-full animate-ping opacity-50"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
       </div>
-      
+
       {/* Error Text */}
-      <motion.h3 
+      <motion.h3
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-3xl font-bold text-[#23232B] mb-4"
       >
-        Something Went Wrong
+        😔 Connection Issue
       </motion.h3>
-      
-      <motion.p 
+
+      <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.5 }}
         className="text-gray-600 mb-8 text-lg leading-relaxed"
       >
-        Don't worry! This happens sometimes. 
+        We're having trouble connecting to our server right now.
         <br />
-        <span className="font-semibold text-[#23232B]">Please try again or contact us directly.</span>
+        <span className="font-semibold text-[#23232B]">
+          Please try again or contact us directly via email.
+        </span>
       </motion.p>
-      
+
       {/* Action Buttons */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7, duration: 0.5 }}
@@ -353,7 +382,7 @@ const BookingSection = () => {
           Try Again
         </button>
         <a
-          href="mailto:contact.tase.llc@gmail.com"
+          href={`mailto:contact.tase.llc@gmail.com?subject=Project Inquiry from ${form.name}&body=Hi TASE Team,%0D%0A%0D%0AI'm interested in your services.%0D%0A%0D%0AName: ${form.name}%0D%0AEmail: ${form.email}%0D%0ACompany: ${form.company}%0D%0AService: ${selectedService}%0D%0A%0D%0AMessage:%0D%0A${form.comment}%0D%0A%0D%0AThanks!`}
           className="bg-white text-[#23232B] px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-[#23232B]"
         >
           Email Us Directly
