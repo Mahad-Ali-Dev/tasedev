@@ -128,13 +128,13 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-transparent text-black font-sans shadow-none ">
-      <div className="w-full flex justify-center">
-        <div className="backdrop-blur-md bg-white/20 shadow-lg border border-white/20 rounded-full px-3 sm:px-6 md:px-8 py-1.5 sm:py-2 mt-3 sm:mt-6 flex items-center w-full max-w-full sm:max-w-[600px] md:max-w-[700px]">
+      <div className="w-full flex justify-center px-2 sm:px-4 md:px-6">
+        <div className="backdrop-blur-md bg-white/20 shadow-lg border border-white/20 rounded-full px-3 sm:px-6 md:px-8 py-1.5 sm:py-2 mt-3 sm:mt-6 flex items-center w-full max-w-[95%] sm:max-w-[600px] md:max-w-[700px]">
           <nav className="w-full flex items-center justify-between">
             {/* Logo */}
             <a href="/" className="flex items-center gap-2">
               <img
-                src="/whitelogo.svg"
+                src="/blacklogo.png"
                 alt="Logo"
                 className="h-8 w-8 sm:h-10 sm:w-10"
               />
