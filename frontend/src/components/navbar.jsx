@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import DraggableVideo from "./DraggableVideo";
 import DragText from "./DragText";
-import BookingForm from "./BookingForm";
 
 const NAV_LINKS = [
   { name: "Who We Are", href: "/who-we-are" },
@@ -26,36 +25,8 @@ const SOCIALS = [
   },
 ];
 
-const SERVICES = [
-  "Web Design",
-  "Web Development",
-  "Web App",
-  "3D",
-  "Shopify",
-  "Other",
-];
-
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [formOpen, setFormOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState("");
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    comment: "",
-  });
-
-  const handleFormChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  const handleFormSubmit = (formData) => {
-    // Handle form submission - you can add API call here
-    console.log("Form submitted:", formData);
-    setFormOpen(false);
-    setForm({ name: "", email: "", company: "", comment: "" });
-    setSelectedService("");
-  };
 
   // Rectangle animation config
   const RECT_COUNT = 5;
@@ -94,6 +65,21 @@ const Navbar = () => {
     setRectsDone(false);
     // Dispatch custom event for cursor
     window.dispatchEvent(new CustomEvent("menuClosed"));
+  };
+
+  // Scroll to booking section
+  const scrollToBookingSection = () => {
+    const bookingSection = document.getElementById("booking-section");
+    if (bookingSection) {
+      bookingSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+    // Close menu if it's open
+    if (menuOpen) {
+      handleCloseMenu();
+    }
   };
 
   // When rectangles finish rising, show menu content
@@ -144,7 +130,7 @@ const Navbar = () => {
               <button
                 className="px-4 sm:px-6 md:px-8 py-1.5 sm:py-2 md:py-2.5 rounded-full text-sm sm:text-base md:text-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 bg-white/20 text-black shadow-lg backdrop-blur-md hover:bg-[#3A3A3A] hover:text-white hover:shadow-xl hover:scale-105"
                 style={{ fontWeight: 600, backdropFilter: "blur(8px)" }}
-                onClick={() => setFormOpen(true)}
+                onClick={scrollToBookingSection}
               >
                 Let's work
               </button>
@@ -235,7 +221,6 @@ const Navbar = () => {
             {rectsDone && menuPhase === "open" && (
               <motion.div
                 className="absolute left-0 top-0 w-full h-full flex animate-fadeIn z-20"
-                style={{ width: "100vw", height: "100vh" }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { delay: 0.1 } }}
                 exit={{ opacity: 0 }}
@@ -282,10 +267,7 @@ const Navbar = () => {
                     <button
                       className={`px-6 sm:px-8 md:px-10 py-2 sm:py-3 md:py-3.5 rounded-full font-semibold text-base sm:text-lg md:text-xl transition active:scale-95 shadow-[0_2px_16px_0_#23232b22] bg-[#1A1A1A] text-white hover:bg-[#F3F3F3] hover:text-black border-0`}
                       style={{ backdropFilter: "blur(8px)" }}
-                      onClick={() => {
-                        setFormOpen(true);
-                        handleCloseMenu();
-                      }}
+                      onClick={scrollToBookingSection}
                     >
                       Let's work
                     </button>
@@ -306,15 +288,6 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <BookingForm
-        open={formOpen}
-        onClose={() => setFormOpen(false)}
-        onSubmit={handleFormSubmit}
-        selectedService={selectedService}
-        setSelectedService={setSelectedService}
-        form={form}
-        setForm={setForm}
-      />
     </header>
   );
 };
