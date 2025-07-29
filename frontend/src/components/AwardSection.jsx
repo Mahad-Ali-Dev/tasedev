@@ -117,8 +117,7 @@ export default function AwardSection() {
     <section
       className="w-full flex flex-col items-center justify-center px-2 sm:px-4 py-12 sm:py-16 md:py-28 relative overflow-hidden"
       style={{
-        background:
-          "linear-gradient(135deg, #23232B 0%, #23232B 60%, #787A84 100%)",
+        background: "#181818",
       }}
     >
       {/* Decorative background blobs */}
