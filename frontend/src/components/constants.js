@@ -1,9 +1,8 @@
 export const SERVICES = [
-  "Design",
-  "Development",
-  "Branding",
-  "Video Editing",
-  "Marketing",
-  "3D",
+  "Design & Development",
+  "Video & Animation",
+  "Branding & Marketing",
+  "AI & Automation",
+  "Cloud & DevOps",
   "Other",
 ];
