@@ -344,7 +344,7 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
       >
         <div className="flex flex-row gap-2 items-baseline">
           <motion.span
-            className="text-[30px] sm:text-[45px] align-baseline cursor-pointer"
+            className="text-[30px] sm:text-[45px] align-baseline"
             style={{
               fontFamily: "'Outfit', 'Montserrat', sans-serif",
               color: "transparent",
@@ -359,7 +359,7 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
             {num}
           </motion.span>
           <motion.span
-            className="text-[45px] sm:text-[70px] align-baseline cursor-pointer"
+            className="text-[45px] sm:text-[70px] align-baseline"
             style={{
               fontFamily: "'Outfit', 'Montserrat', sans-serif",
               color: "transparent",
@@ -375,7 +375,7 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
           </motion.span>
         </div>
         <motion.span
-          className="block text-[45px] sm:text-[96px] font-extrabold text-[#222] leading-none mt-1 align-baseline cursor-pointer"
+          className="block text-[45px] sm:text-[96px] font-extrabold text-[#222] leading-none mt-1 align-baseline"
           style={{
             fontFamily: "Averta CY",
             fontWeight: 700,
@@ -405,7 +405,7 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
     >
       <div className="flex flex-row gap-2 justify-center items-baseline">
         <motion.span
-          className="lg:text-[24px] sm: text-[45px] align-baseline cursor-pointer"
+          className="lg:text-[24px] sm: text-[45px] align-baseline"
           style={{
             fontFamily: "'Outfit', 'Montserrat', sans-serif",
             color: "transparent",
@@ -420,7 +420,7 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
           {num}
         </motion.span>
         <motion.span
-          className="text-[36px] sm:text-[70px] align-baseline cursor-pointer"
+          className="text-[36px] sm:text-[70px] align-baseline"
           style={{
             fontFamily: "'Outfit', 'Montserrat', sans-serif",
             color: "transparent",
@@ -435,7 +435,7 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
           the
         </motion.span>
         <motion.span
-          className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline cursor-pointer"
+          className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline"
           style={{
             fontFamily: "Averta CY",
             fontWeight: 700,
@@ -510,7 +510,7 @@ export default function WhoWeAre() {
         >
           <div className="text-center mb-2">
             <motion.div
-              className="lg:text-[70px] lg:mt-20 sm: text-[25px] sm: mt-20 text-black font-semibold mb-0 leading-tight cursor-pointer"
+              className="lg:text-[70px] lg:mt-20 sm: text-[25px] sm: mt-20 text-black font-semibold mb-0 leading-tight"
               variants={textReveal}
               whileHover={headingHover.hover}
             >
@@ -522,7 +522,7 @@ export default function WhoWeAre() {
             </motion.div>
             <br />
             <motion.div
-              className="lg:text-[70px] sm: text-[25px] text-black font-semibold mb-10 leading-tight cursor-pointer"
+              className="lg:text-[70px] sm: text-[25px] text-black font-semibold mb-10 leading-tight"
               variants={textReveal}
               whileHover={headingHover.hover}
             >
@@ -542,7 +542,7 @@ export default function WhoWeAre() {
               variants={scaleIn}
             >
               <motion.img
-                className="object-cover shadow-xl sticky top-24 lg:w-full max-w-full lg:h-[500px] md:w-[700px] md:h-[400px] mx-auto sm: w-[400px] cursor-pointer"
+                className="object-cover shadow-xl sticky top-24 lg:w-full max-w-full lg:h-[500px] md:w-[700px] md:h-[400px] mx-auto sm: w-[400px]"
                 src="/who-we-are-min.png"
                 alt="Who We Are"
                 ref={heroImgRef}
@@ -554,7 +554,7 @@ export default function WhoWeAre() {
             {/* Updated section with black color and larger margins */}
             <motion.div className="mt-40 mb-32" variants={floatIn}>
               <motion.div
-                className="lg:text-[75px] sm: text-[25px] font-semibold leading-tight text-black cursor-pointer"
+                className="lg:text-[75px] sm: text-[25px] font-semibold leading-tight text-black"
                 variants={textReveal}
                 whileHover={headingHover.hover}
               >
@@ -566,7 +566,7 @@ export default function WhoWeAre() {
               </motion.div>
               <br />
               <motion.div
-                className="lg:text-[75px] sm: text-[25px] font-semibold leading-tight text-black cursor-pointer"
+                className="lg:text-[75px] sm: text-[25px] font-semibold leading-tight text-black"
                 variants={textReveal}
                 whileHover={headingHover.hover}
               >
@@ -599,7 +599,7 @@ export default function WhoWeAre() {
             >
               <div className="flex flex-row gap-2 items-baseline">
                 <motion.span
-                  className="text-[30px] sm:text-[45px] align-baseline cursor-pointer"
+                  className="text-[30px] sm:text-[45px] align-baseline"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -614,7 +614,7 @@ export default function WhoWeAre() {
                   01
                 </motion.span>
                 <motion.span
-                  className="text-[36px] sm:text-[70px] align-baseline cursor-pointer"
+                  className="text-[36px] sm:text-[70px] align-baseline"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -629,7 +629,7 @@ export default function WhoWeAre() {
                   the
                 </motion.span>
                 <motion.span
-                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline cursor-pointer"
+                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline"
                   style={{
                     fontFamily: "Averta CY",
                     fontWeight: 700,
@@ -681,59 +681,69 @@ export default function WhoWeAre() {
           >
             {[
               {
-                name: "Mahad Ali",
-                img: "/profiles/mahad-min.png",
-                role: "Co-Founder",
-              },
-              {
                 name: "Abdul Rehman",
                 img: "/profiles/abdulrehman-min.png",
-                role: "Co-Founder",
+                role: "Chief Executive Officer",
+                description:
+                  "Visionary behind TASE. Leads strategy, creative direction, and client relationships with a focus on delivering bold digital experiences.",
+              },
+              {
+                name: "Mahad Ali",
+                img: "/profiles/mahad-min.png",
+                role: "Chief Technology Officer",
+                description:
+                  "Oversees all things tech — from system architecture to performance. Drives innovation and ensures seamless, scalable development.",
               },
               {
                 name: "Muhammad Abubakar",
                 img: "/profiles/abubakar-min.png",
-                role: "Co-Founder",
+                role: "Head of Operations & Finance",
+                description:
+                  "Keeps the engine running. Manages timelines, finances, and internal workflows to ensure every project stays sharp and on track.",
               },
             ].map((member, i) => (
-              <motion.div
+              <div
                 key={member.name}
-                className="flex flex-col items-center w-[220px] mb-6"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={bounceIn}
-                transition={{ delay: i * 0.18 }}
+                className="flex flex-col items-center w-[220px] mb-6 group"
               >
-                <TiltCard>
-                  <motion.img
+                <div className="w-full h-[320px] bg-[#e6eef6] rounded-[16px] flex items-center justify-center mb-4 relative shadow-lg overflow-hidden">
+                  <img
                     src={member.img}
                     alt={member.name}
-                    className="lg:w-[300px] lg:h-[400px] object-cover shadow-lg rounded-[10px] max-w-full sm:w-[500px] sm: h-[400px] cursor-pointer"
-                    whileHover={imageHover.hover}
+                    className="lg:w-[300px] lg:h-[400px] object-cover shadow-lg rounded-[10px] max-w-full sm:w-[500px] sm: h-[400px] transition-transform duration-300 group-hover:scale-105"
                   />
-                </TiltCard>
-                <motion.div
-                  className="text-[#222] text-[18px] font-medium text-center mt-10 cursor-pointer"
+                  {/* Hover overlay with member info */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent rounded-[10px] flex items-end justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <div className="text-white text-center px-6 py-6 mb-2">
+                      <div
+                        className="text-[13px] leading-relaxed font-semibold drop-shadow-lg"
+                        style={{
+                          fontFamily:
+                            "Outfit, Montserrat, Comfortaa, sans-serif",
+                        }}
+                      >
+                        {member.description}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="text-[#222] text-[18px] font-medium text-center mt-10"
                   style={{
                     fontFamily: "Outfit, Montserrat, Comfortaa, sans-serif",
                   }}
-                  variants={textReveal}
-                  whileHover={textHover.hover}
                 >
                   {member.name}
-                </motion.div>
-                <motion.div
-                  className="text-[#888] text-[13px] font-light tracking-wide text-center mb-10 cursor-pointer"
+                </div>
+                <div
+                  className="text-[#888] text-[13px] font-light tracking-wide text-center mb-10"
                   style={{
                     fontFamily: "Outfit, Montserrat, Comfortaa, sans-serif",
                   }}
-                  variants={textReveal}
-                  whileHover={textHover.hover}
                 >
                   {member.role}
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             ))}
           </motion.div>
         </motion.div>
@@ -757,7 +767,7 @@ export default function WhoWeAre() {
             >
               <div className="flex flex-row gap-2 items-baseline">
                 <motion.span
-                  className="text-[30px] sm:text-[45px] align-baseline cursor-pointer"
+                  className="text-[30px] sm:text-[45px] align-baseline"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -772,7 +782,7 @@ export default function WhoWeAre() {
                   03
                 </motion.span>
                 <motion.span
-                  className="text-[36px] sm:text-[70px] align-baseline cursor-pointer"
+                  className="text-[36px] sm:text-[70px] align-baseline"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -787,7 +797,7 @@ export default function WhoWeAre() {
                   the
                 </motion.span>
                 <motion.span
-                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline cursor-pointer"
+                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline"
                   style={{
                     fontFamily: "Averta CY",
                     fontWeight: 700,
@@ -838,7 +848,7 @@ export default function WhoWeAre() {
             <motion.img
               src="/TASE DEVS 1-min.png"
               alt="TASE workspace"
-              className="sticky top-32 w-[400px] h-[650px] object-cover rounded-[2px] shadow mb-4 hidden sm:block cursor-pointer"
+              className="sticky top-32 w-[400px] h-[650px] object-cover rounded-[2px] shadow mb-4 hidden sm:block"
               loading="eager"
               variants={fadeInScale}
               whileHover={imageHover.hover}
@@ -846,7 +856,7 @@ export default function WhoWeAre() {
             <motion.img
               src="/TASE DEVS OFFICE-min.png"
               alt="TASE project"
-              className="sticky top-32 w-[400px] h-[650px] object-cover mt-20 rounded-[2px] shadow hidden sm:block cursor-pointer"
+              className="sticky top-32 w-[400px] h-[650px] object-cover mt-20 rounded-[2px] shadow hidden sm:block"
               loading="eager"
               variants={fadeInScale}
               whileHover={imageHover.hover}
@@ -856,7 +866,7 @@ export default function WhoWeAre() {
               <motion.img
                 src="/TASE DEVS 1-min.png"
                 alt="TASE workspace"
-                className="w-full h-auto object-cover rounded-[2px] shadow cursor-pointer"
+                className="w-full h-auto object-cover rounded-[2px] shadow"
                 loading="eager"
                 variants={fadeInScale}
                 whileHover={imageHover.hover}
@@ -864,7 +874,7 @@ export default function WhoWeAre() {
               <motion.img
                 src="/TASE DEVS OFFICE-min.png"
                 alt="TASE project"
-                className="w-full h-auto object-cover rounded-[2px] shadow cursor-pointer"
+                className="w-full h-auto object-cover rounded-[2px] shadow"
                 loading="eager"
                 variants={fadeInScale}
                 whileHover={imageHover.hover}
@@ -892,7 +902,7 @@ export default function WhoWeAre() {
             >
               <div className="flex flex-row gap-2 items-baseline">
                 <motion.span
-                  className="text-[30px] sm:text-[45px] align-baseline cursor-pointer"
+                  className="text-[30px] sm:text-[45px] align-baseline"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -907,7 +917,7 @@ export default function WhoWeAre() {
                   04
                 </motion.span>
                 <motion.span
-                  className="text-[36px] sm:text-[70px] align-baseline cursor-pointer"
+                  className="text-[36px] sm:text-[70px] align-baseline"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -922,7 +932,7 @@ export default function WhoWeAre() {
                   the
                 </motion.span>
                 <motion.span
-                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline cursor-pointer"
+                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline"
                   style={{
                     fontFamily: "Averta CY",
                     fontWeight: 700,
@@ -976,7 +986,7 @@ export default function WhoWeAre() {
             <motion.img
               src="/TASE DEVS 2-min.png"
               alt="TASE office"
-              className="hidden sm:block object-cover rounded-[2px] shadow w-full md:h-[220px] lg:sticky lg:top-32 lg:w-[900px] lg:h-[420px] cursor-pointer"
+              className="hidden sm:block object-cover rounded-[2px] shadow w-full md:h-[220px] lg:sticky lg:top-32 lg:w-[900px] lg:h-[420px]"
               variants={fadeInScale}
               whileHover={imageHover.hover}
             />
@@ -984,7 +994,7 @@ export default function WhoWeAre() {
             <motion.img
               src="/TASE DEVS 2-min.png"
               alt="TASE office"
-              className="w-full h-auto object-cover shadow sm:hidden cursor-pointer"
+              className="w-full h-auto object-cover shadow sm:hidden"
               variants={fadeInScale}
               whileHover={imageHover.hover}
             />
@@ -1010,7 +1020,7 @@ export default function WhoWeAre() {
             >
               <div className="flex flex-row gap-2 items-baseline">
                 <motion.span
-                  className="text-[30px] sm:text-[45px] align-baseline cursor-pointer"
+                  className="text-[30px] sm:text-[45px] align-baseline"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -1025,7 +1035,7 @@ export default function WhoWeAre() {
                   05
                 </motion.span>
                 <motion.span
-                  className="text-[36px] sm:text-[70px] align-baseline cursor-pointer"
+                  className="text-[36px] sm:text-[70px] align-baseline"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -1040,7 +1050,7 @@ export default function WhoWeAre() {
                   the
                 </motion.span>
                 <motion.span
-                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline cursor-pointer"
+                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline"
                   style={{
                     fontFamily: "Averta CY",
                     fontWeight: 700,
@@ -1107,35 +1117,35 @@ export default function WhoWeAre() {
                   <motion.img
                     src="/About/1-min.png"
                     alt="Project 1"
-                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block"
                     whileHover={imageHover.hover}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <motion.img
                     src="/About/2-min.png"
                     alt="Project 2"
-                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block"
                     whileHover={imageHover.hover}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <motion.img
                     src="/About/3-min.png"
                     alt="Project 3"
-                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block"
                     whileHover={imageHover.hover}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <motion.img
                     src="/About/4-min.png"
                     alt="Project 4"
-                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block"
                     whileHover={imageHover.hover}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <motion.img
                     src="/About/5-min.png"
                     alt="Project 5"
-                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block mr-10 cursor-pointer"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block mr-10"
                     whileHover={imageHover.hover}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
@@ -1157,35 +1167,35 @@ export default function WhoWeAre() {
                   <motion.img
                     src="/About/6-min.png"
                     alt="Project 6"
-                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block"
                     whileHover={imageHover.hover}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <motion.img
                     src="/About/7-min.png"
                     alt="Project 7"
-                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block"
                     whileHover={imageHover.hover}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <motion.img
                     src="/About/8-min.png"
                     alt="Project 8"
-                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block"
                     whileHover={imageHover.hover}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <motion.img
                     src="/About/9-min.png"
                     alt="Project 9"
-                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block"
                     whileHover={imageHover.hover}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                   <motion.img
                     src="/About/10-min.png"
                     alt="Project 10"
-                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block mr-10 cursor-pointer"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block mr-10"
                     whileHover={imageHover.hover}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
