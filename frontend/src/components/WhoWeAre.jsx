@@ -681,15 +681,15 @@ export default function WhoWeAre() {
           >
             {[
               {
-                name: "Abdul Rehman",
-                img: "/profiles/abdulrehman-min.png",
+                name: "Mahad Ali",
+                img: "/profiles/mahad-min.png",
                 role: "Chief Executive Officer",
                 description:
                   "Visionary behind TASE. Leads strategy, creative direction, and client relationships with a focus on delivering bold digital experiences.",
               },
               {
-                name: "Mahad Ali",
-                img: "/profiles/mahad-min.png",
+                name: "Abdul Rehman",
+                img: "/profiles/abdulrehman-min.png",
                 role: "Chief Technology Officer",
                 description:
                   "Oversees all things tech — from system architecture to performance. Drives innovation and ensures seamless, scalable development.",
