@@ -151,7 +151,7 @@ const Footer = () => {
               viewport={{ once: false, amount: 0.7 }}
               variants={fadeInUp}
             >
-              +92 <span className="font-bold">346 7922 842</span>
+              +44 <span className="font-bold">735 432 8258</span>
             </motion.div>
             <motion.div
               className="text-[#BDBDBD] text-sm mb-1"
@@ -171,7 +171,7 @@ const Footer = () => {
               viewport={{ once: false, amount: 0.7 }}
               variants={fadeInUp}
             >
-              Tasedevs Gujranwala, Pakistan
+              TASE DEVS — St. Peter’s Square, Manchester · UK
             </motion.div>
           </motion.div>
           {/* Right: Socials */}
