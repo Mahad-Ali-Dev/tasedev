@@ -460,15 +460,13 @@ const ProjectSection = () => {
       {/* Section Heading */}
       <motion.div
         className="relative z-10 max-w-2xl mx-auto mb-20 text-center"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
-        variants={fadeInUp}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         <motion.h2
           className="text-lg sm:text-2xl md:text-3xl font-bold text-[#23232B] mb-2"
-          variants={textReveal}
           whileHover={{
             scale: 1.02,
             textShadow: "0 0 30px rgba(35, 35, 43, 0.3)",
@@ -479,11 +477,6 @@ const ProjectSection = () => {
         </motion.h2>
         <motion.p
           className="text-sm sm:text-base md:text-lg text-[#888]"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-          viewport={{ once: true, amount: 0.3 }}
-          variants={textReveal}
           whileHover={{
             scale: 1.02,
             color: "#23232B",
