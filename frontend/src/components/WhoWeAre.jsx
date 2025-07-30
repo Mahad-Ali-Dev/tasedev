@@ -4,8 +4,6 @@ import BookingSection from "./BookingSection";
 import Footer from "./Footer";
 import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
 
-// TODO: Make sure to load 'Outfit', 'Montserrat', and 'Averta CY' fonts in your project (Google Fonts or CSS import)
-
 // Helper: AnimatedText for word-by-word or letter-by-letter reveal
 function AnimatedText({ text, delay = 0, className = "", type = "word" }) {
   const items = type === "letter" ? text.split("") : text.split(" ");
@@ -31,34 +29,285 @@ function AnimatedText({ text, delay = 0, className = "", type = "word" }) {
   );
 }
 
+// Enhanced animation variants - More subtle and professional
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 };
+
 const fadeInScale = {
-  hidden: { opacity: 0, y: 40, scale: 0.96 },
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
+    },
   },
 };
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const bounceIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const floatIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+// New beautiful animations for section headings
+const headingGlow = {
+  hidden: { opacity: 0, y: 40, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 1.2,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const numberReveal = {
+  hidden: { opacity: 0, x: -60, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 1.0,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const wordReveal = {
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 1.1,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const contentSlideUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1.0,
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const paragraphReveal = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 const staggerContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.18 } },
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
 };
+
+const textReveal = {
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const imageHover = {
+  hover: {
+    scale: 1.05,
+    rotateY: 2,
+    boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+    transition: {
+      duration: 0.4,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const numberGlow = {
+  hover: {
+    scale: 1.15,
+    textShadow: "0 0 25px rgba(35, 35, 43, 0.9)",
+    WebkitTextStroke: "2px #23232B",
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
+
+const headingHover = {
+  hover: {
+    scale: 1.02,
+    color: "#23232B",
+    textShadow: "0 0 20px rgba(35, 35, 43, 0.3)",
+    transition: {
+      duration: 0.3,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const textHover = {
+  hover: {
+    scale: 1.02,
+    color: "#23232B",
+    transition: {
+      duration: 0.2,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const listItemHover = {
+  hover: {
+    x: 12,
+    color: "#23232B",
+    scale: 1.03,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
+
+// Define slower animation variants for sections
+const fadeInUpSlow = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } },
+};
+
+const fadeInScaleSlow = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.9, ease: "easeOut" },
+  },
+};
+
+// Add new rotate-in animation variants
+const rotateInLeft = {
+  hidden: { opacity: 0, x: -80, rotate: -8 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    rotate: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
+
+const rotateInRight = {
+  hidden: { opacity: 0, x: 80, rotate: 8 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    rotate: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
+
 const tiltTransition = { type: "spring", stiffness: 300, damping: 20 };
 
 function TiltCard({ children }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-60, 60], [12, -12]);
-  const rotateY = useTransform(x, [-60, 60], [-12, 12]);
+  const rotateX = useTransform(y, [-60, 60], [8, -8]);
+  const rotateY = useTransform(x, [-60, 60], [-8, 8]);
   return (
     <motion.div
       style={{ rotateX, rotateY, z: 10 }}
-      className="w-full h-[320px] bg-[#e6eef6] rounded-[16px] flex items-center justify-center mb-4 relative shadow-lg transition-shadow duration-200 hover:shadow-2xl"
+      className="w-full h-[320px] bg-[#e6eef6] rounded-[16px] flex items-center justify-center mb-4 relative shadow-lg transition-all duration-300"
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         x.set(e.clientX - rect.left - rect.width / 2);
@@ -70,8 +319,8 @@ function TiltCard({ children }) {
       }}
       transition={tiltTransition}
       whileHover={{
-        scale: 1.045,
-        boxShadow: "0 8px 32px 0 rgba(90,90,120,0.18)",
+        scale: 1.03,
+        boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
       }}
     >
       {children}
@@ -90,12 +339,12 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
         style={{ position: "relative" }}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.7 }}
-        variants={staggerContainer}
+        viewport={{ once: true, amount: 0.3 }}
+        variants={headingGlow}
       >
         <div className="flex flex-row gap-2 items-baseline">
           <motion.span
-            className="text-[30px] sm:text-[45px] align-baseline"
+            className="text-[30px] sm:text-[45px] align-baseline cursor-pointer"
             style={{
               fontFamily: "'Outfit', 'Montserrat', sans-serif",
               color: "transparent",
@@ -104,12 +353,13 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
               lineHeight: 1,
               display: "inline-block",
             }}
-            variants={fadeInUp}
+            variants={numberReveal}
+            whileHover={numberGlow.hover}
           >
             {num}
           </motion.span>
           <motion.span
-            className="text-[45px] sm:text-[70px] align-baseline"
+            className="text-[45px] sm:text-[70px] align-baseline cursor-pointer"
             style={{
               fontFamily: "'Outfit', 'Montserrat', sans-serif",
               color: "transparent",
@@ -118,13 +368,14 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
               lineHeight: 1,
               display: "inline-block",
             }}
-            variants={fadeInUp}
+            variants={numberReveal}
+            whileHover={numberGlow.hover}
           >
             the
           </motion.span>
         </div>
         <motion.span
-          className="block text-[45px] sm:text-[96px] font-extrabold text-[#222] leading-none mt-1 align-baseline"
+          className="block text-[45px] sm:text-[96px] font-extrabold text-[#222] leading-none mt-1 align-baseline cursor-pointer"
           style={{
             fontFamily: "Averta CY",
             fontWeight: 700,
@@ -132,7 +383,8 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
             wordWrap: "break-word",
             textAlign: "left",
           }}
-          variants={fadeInUp}
+          variants={wordReveal}
+          whileHover={headingHover.hover}
         >
           {word}
           {dot && "."}
@@ -148,12 +400,12 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
       style={{ position: "relative" }}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.7 }}
-      variants={staggerContainer}
+      viewport={{ once: true, amount: 0.3 }}
+      variants={headingGlow}
     >
       <div className="flex flex-row gap-2 justify-center items-baseline">
         <motion.span
-          className="lg:text-[24px] sm: text-[45px] align-baseline"
+          className="lg:text-[24px] sm: text-[45px] align-baseline cursor-pointer"
           style={{
             fontFamily: "'Outfit', 'Montserrat', sans-serif",
             color: "transparent",
@@ -162,12 +414,13 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
             lineHeight: 1,
             display: "inline-block",
           }}
-          variants={fadeInUp}
+          variants={numberReveal}
+          whileHover={numberGlow.hover}
         >
           {num}
         </motion.span>
         <motion.span
-          className="text-[36px] sm:text-[70px] align-baseline"
+          className="text-[36px] sm:text-[70px] align-baseline cursor-pointer"
           style={{
             fontFamily: "'Outfit', 'Montserrat', sans-serif",
             color: "transparent",
@@ -176,12 +429,13 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
             lineHeight: 1,
             display: "inline-block",
           }}
-          variants={fadeInUp}
+          variants={numberReveal}
+          whileHover={numberGlow.hover}
         >
           the
         </motion.span>
         <motion.span
-          className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline"
+          className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline cursor-pointer"
           style={{
             fontFamily: "Averta CY",
             fontWeight: 700,
@@ -189,7 +443,8 @@ function SectionLabel({ num, word, dot = true, emoji, align = "center" }) {
             wordWrap: "break-word",
             textAlign: "center",
           }}
-          variants={fadeInUp}
+          variants={wordReveal}
+          whileHover={headingHover.hover}
         >
           {word}
           {dot && "."}
@@ -231,6 +486,14 @@ export default function WhoWeAre() {
   return (
     <>
       <Navbar />
+      {/* Scroll Progress Indicator */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00e6c7] to-[#667eea] z-50 origin-left"
+        style={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      />
       {/* Main Section Wrapper */}
       <section
         className="w-full font-sans transition-colors duration-700"
@@ -241,59 +504,79 @@ export default function WhoWeAre() {
           className="w-full flex flex-col items-center justify-center mt-8 mb-8"
           style={{ position: "relative" }}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
           <div className="text-center mb-2">
-            <AnimatedText
-              text="Wondering who are these"
-              className="lg:text-[70px] lg:mt-20 sm: text-[25px] sm: mt-20 text-black font-semibold mb-0 leading-tight"
-              delay={0}
-              type="word"
-            />
+            <motion.div
+              className="lg:text-[70px] lg:mt-20 sm: text-[25px] sm: mt-20 text-black font-semibold mb-0 leading-tight cursor-pointer"
+              variants={textReveal}
+              whileHover={headingHover.hover}
+            >
+              <AnimatedText
+                text="Wondering who are these"
+                delay={0}
+                type="word"
+              />
+            </motion.div>
             <br />
-            <AnimatedText
-              text="bunch of handsome gentlemen?"
-              className="lg:text-[70px] sm: text-[25px] text-black font-semibold mb-10 leading-tight"
-              delay={0.5}
-              type="word"
-            />
+            <motion.div
+              className="lg:text-[70px] sm: text-[25px] text-black font-semibold mb-10 leading-tight cursor-pointer"
+              variants={textReveal}
+              whileHover={headingHover.hover}
+            >
+              <AnimatedText
+                text="bunch of handsome gentlemen?"
+                delay={0.5}
+                type="word"
+              />
+            </motion.div>
             {/* HERO IMAGE */}
             <motion.div
               className="flex flex-col w-[95vw] mb-20"
               style={{ position: "relative" }}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.7 }}
-              variants={fadeInScale}
+              viewport={{ once: true, amount: 0.3 }}
+              variants={scaleIn}
             >
               <motion.img
-                className="object-cover shadow-xl sticky top-24 lg:w-full max-w-full lg:h-[500px] md:w-[700px] md:h-[400px] mx-auto sm: w-[400px]"
+                className="object-cover shadow-xl sticky top-24 lg:w-full max-w-full lg:h-[500px] md:w-[700px] md:h-[400px] mx-auto sm: w-[400px] cursor-pointer"
                 src="/who-we-are-min.png"
                 alt="Who We Are"
                 ref={heroImgRef}
                 style={{ y: heroParallax }}
-                initial="hidden"
-                animate="visible"
                 variants={fadeInScale}
+                whileHover={imageHover.hover}
               />
             </motion.div>
             {/* Updated section with black color and larger margins */}
-            <div className="mt-40 mb-32">
-              <AnimatedText
-                text="pinch of ordinary with"
-                className="lg:text-[75px] sm: text-[25px] font-semibold leading-tight text-black"
-                delay={0.1}
-                type="word"
-              />
+            <motion.div className="mt-40 mb-32" variants={floatIn}>
+              <motion.div
+                className="lg:text-[75px] sm: text-[25px] font-semibold leading-tight text-black cursor-pointer"
+                variants={textReveal}
+                whileHover={headingHover.hover}
+              >
+                <AnimatedText
+                  text="pinch of ordinary with"
+                  delay={0.1}
+                  type="word"
+                />
+              </motion.div>
               <br />
-              <AnimatedText
-                text="loads of extra-ordinary"
-                className="lg:text-[75px] sm: text-[25px] font-semibold leading-tight text-black"
-                delay={0.3}
-                type="word"
-              />
-            </div>
+              <motion.div
+                className="lg:text-[75px] sm: text-[25px] font-semibold leading-tight text-black cursor-pointer"
+                variants={textReveal}
+                whileHover={headingHover.hover}
+              >
+                <AnimatedText
+                  text="loads of extra-ordinary"
+                  delay={0.3}
+                  type="word"
+                />
+              </motion.div>
+            </motion.div>
           </div>
         </motion.div>
 
@@ -302,7 +585,7 @@ export default function WhoWeAre() {
           className="lg:mt-[90px] flex flex-col sm: mt-20 items-center justify-center w-full"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.7 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
           <div className="max-w-4xl px-4 w-full">
@@ -311,12 +594,12 @@ export default function WhoWeAre() {
               className="w-full mb-8 items-start text-left flex flex-row self-baseline"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.7 }}
-              variants={staggerContainer}
+              viewport={{ once: true, amount: 0.3 }}
+              variants={headingGlow}
             >
               <div className="flex flex-row gap-2 items-baseline">
                 <motion.span
-                  className="text-[30px] sm:text-[45px] align-baseline"
+                  className="text-[30px] sm:text-[45px] align-baseline cursor-pointer"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -325,12 +608,13 @@ export default function WhoWeAre() {
                     lineHeight: 1,
                     display: "inline-block",
                   }}
-                  variants={fadeInUp}
+                  variants={numberReveal}
+                  whileHover={numberGlow.hover}
                 >
                   01
                 </motion.span>
                 <motion.span
-                  className="text-[36px] sm:text-[70px] align-baseline"
+                  className="text-[36px] sm:text-[70px] align-baseline cursor-pointer"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -339,19 +623,21 @@ export default function WhoWeAre() {
                     lineHeight: 1,
                     display: "inline-block",
                   }}
-                  variants={fadeInUp}
+                  variants={numberReveal}
+                  whileHover={numberGlow.hover}
                 >
                   the
                 </motion.span>
                 <motion.span
-                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline"
+                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline cursor-pointer"
                   style={{
                     fontFamily: "Averta CY",
                     fontWeight: 700,
                     lineHeight: 1.1,
                     wordWrap: "break-word",
                   }}
-                  variants={fadeInUp}
+                  variants={wordReveal}
+                  whileHover={headingHover.hover}
                 >
                   basics.
                 </motion.span>
@@ -360,7 +646,7 @@ export default function WhoWeAre() {
 
             <motion.div
               className="flex flex-col items-start justify-start w-full"
-              variants={staggerContainer}
+              variants={contentSlideUp}
             >
               {[
                 "We're a full-service digital agency creating bold digital experiences across the globe. From design and development to strategy and scale, TASE helps brands grow with clarity and style. Our team delivers sharp solutions — on time, on point, and always with impact. And the name? TASE isn't an acronym — it's a statement. A brand built by Mahad, Abdul Rehman,  and Abubakar, shaped by vision, not just letters.",
@@ -371,10 +657,7 @@ export default function WhoWeAre() {
                   style={{
                     fontFamily: "Outfit, Montserrat, Comfortaa, sans-serif",
                   }}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.7 }}
-                  variants={fadeInUp}
+                  variants={paragraphReveal}
                 >
                   {text}
                 </motion.div>
@@ -388,13 +671,13 @@ export default function WhoWeAre() {
           className="mt-[120px] w-full flex flex-col items-center justify-center"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.7 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
           <SectionLabel num="02" word="team" align="center" />
           <motion.div
             className="w-full max-w-5xl mt-12 flex flex-wrap justify-center gap-6 sm:gap-12"
-            variants={staggerContainer}
+            variants={floatIn}
           >
             {[
               {
@@ -418,33 +701,38 @@ export default function WhoWeAre() {
                 className="flex flex-col items-center w-[220px] mb-6"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.7 }}
-                variants={fadeInScale}
+                viewport={{ once: true, amount: 0.3 }}
+                variants={bounceIn}
                 transition={{ delay: i * 0.18 }}
               >
                 <TiltCard>
-                  <img
+                  <motion.img
                     src={member.img}
                     alt={member.name}
-                    className="lg:w-[300px] lg:h-[400px] object-cover shadow-lg rounded-[10px] max-w-full sm:w-[500px] sm: h-[400px]"
+                    className="lg:w-[300px] lg:h-[400px] object-cover shadow-lg rounded-[10px] max-w-full sm:w-[500px] sm: h-[400px] cursor-pointer"
+                    whileHover={imageHover.hover}
                   />
                 </TiltCard>
-                <div
-                  className="text-[#222] text-[18px] font-medium text-center mt-10 "
+                <motion.div
+                  className="text-[#222] text-[18px] font-medium text-center mt-10 cursor-pointer"
                   style={{
                     fontFamily: "Outfit, Montserrat, Comfortaa, sans-serif",
                   }}
+                  variants={textReveal}
+                  whileHover={textHover.hover}
                 >
                   {member.name}
-                </div>
-                <div
-                  className="text-[#888] text-[13px] font-light tracking-wide text-center mb-10"
+                </motion.div>
+                <motion.div
+                  className="text-[#888] text-[13px] font-light tracking-wide text-center mb-10 cursor-pointer"
                   style={{
                     fontFamily: "Outfit, Montserrat, Comfortaa, sans-serif",
                   }}
+                  variants={textReveal}
+                  whileHover={textHover.hover}
                 >
                   {member.role}
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -455,7 +743,7 @@ export default function WhoWeAre() {
           className="flex flex-col items-center justify-center w-full mb-8 mt-[90px]"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.7 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
           <div className="max-w-4xl px-4 w-full">
@@ -464,12 +752,12 @@ export default function WhoWeAre() {
               className="w-full mb-8 items-start text-left flex flex-row self-baseline"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.7 }}
-              variants={staggerContainer}
+              viewport={{ once: true, amount: 0.3 }}
+              variants={headingGlow}
             >
               <div className="flex flex-row gap-2 items-baseline">
                 <motion.span
-                  className="text-[30px] sm:text-[45px] align-baseline"
+                  className="text-[30px] sm:text-[45px] align-baseline cursor-pointer"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -478,12 +766,13 @@ export default function WhoWeAre() {
                     lineHeight: 1,
                     display: "inline-block",
                   }}
-                  variants={fadeInUp}
+                  variants={numberReveal}
+                  whileHover={numberGlow.hover}
                 >
                   03
                 </motion.span>
                 <motion.span
-                  className="text-[36px] sm:text-[70px] align-baseline"
+                  className="text-[36px] sm:text-[70px] align-baseline cursor-pointer"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -492,19 +781,21 @@ export default function WhoWeAre() {
                     lineHeight: 1,
                     display: "inline-block",
                   }}
-                  variants={fadeInUp}
+                  variants={numberReveal}
+                  whileHover={numberGlow.hover}
                 >
                   the
                 </motion.span>
                 <motion.span
-                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline"
+                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline cursor-pointer"
                   style={{
                     fontFamily: "Averta CY",
                     fontWeight: 700,
                     lineHeight: 1.1,
                     wordWrap: "break-word",
                   }}
-                  variants={fadeInUp}
+                  variants={wordReveal}
+                  whileHover={headingHover.hover}
                 >
                   beginning.
                 </motion.span>
@@ -513,7 +804,7 @@ export default function WhoWeAre() {
 
             <motion.div
               className="flex flex-col items-start justify-start w-full"
-              variants={staggerContainer}
+              variants={contentSlideUp}
             >
               {[
                 "A few years back, TASE started with nothing more than shared curiosity and a drive to build something meaningful. No clients, no funding — just a few friends taking on unpaid projects, learning through late nights and self-taught hustle. What began as passion projects soon grew into something real. We became obsessed with clean design, intuitive builds, and experiences that feel as good as they look. We're not the corporate type. We're creators first — builders, thinkers, and friends who still love what we do as much as we did on day one.",
@@ -524,7 +815,7 @@ export default function WhoWeAre() {
                   style={{
                     fontFamily: "Outfit, Montserrat, Comfortaa, sans-serif",
                   }}
-                  variants={fadeInUp}
+                  variants={paragraphReveal}
                 >
                   {text}
                 </motion.div>
@@ -541,42 +832,42 @@ export default function WhoWeAre() {
             style={{ y: heroParallax }}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-            variants={{
-              hidden: { opacity: 0, y: 40, scale: 0.96 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-              },
-            }}
+            viewport={{ once: true, amount: 0.3 }}
+            variants={scaleIn}
           >
-            <img
+            <motion.img
               src="/TASE DEVS 1-min.png"
               alt="TASE workspace"
-              className="sticky top-32 w-[400px] h-[650px] object-cover rounded-[2px] shadow mb-4 hidden sm:block"
+              className="sticky top-32 w-[400px] h-[650px] object-cover rounded-[2px] shadow mb-4 hidden sm:block cursor-pointer"
               loading="eager"
+              variants={fadeInScale}
+              whileHover={imageHover.hover}
             />
-            <img
+            <motion.img
               src="/TASE DEVS OFFICE-min.png"
               alt="TASE project"
-              className="sticky top-32 w-[400px] h-[650px] object-cover mt-20 rounded-[2px] shadow hidden sm:block"
+              className="sticky top-32 w-[400px] h-[650px] object-cover mt-20 rounded-[2px] shadow hidden sm:block cursor-pointer"
               loading="eager"
+              variants={fadeInScale}
+              whileHover={imageHover.hover}
             />
             {/* Mobile fallback: show images stacked and scrollable */}
             <div className="flex flex-col gap-10 w-full sm:hidden">
-              <img
+              <motion.img
                 src="/TASE DEVS 1-min.png"
                 alt="TASE workspace"
-                className="w-full h-auto object-cover rounded-[2px] shadow"
+                className="w-full h-auto object-cover rounded-[2px] shadow cursor-pointer"
                 loading="eager"
+                variants={fadeInScale}
+                whileHover={imageHover.hover}
               />
-              <img
+              <motion.img
                 src="/TASE DEVS OFFICE-min.png"
                 alt="TASE project"
-                className="w-full h-auto object-cover rounded-[2px] shadow"
+                className="w-full h-auto object-cover rounded-[2px] shadow cursor-pointer"
                 loading="eager"
+                variants={fadeInScale}
+                whileHover={imageHover.hover}
               />
             </div>
           </motion.div>
@@ -587,7 +878,7 @@ export default function WhoWeAre() {
           className="flex flex-col items-center justify-center w-full mb-8 mt-[120px]"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.7 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
           <div className="max-w-4xl px-4 w-full">
@@ -596,12 +887,12 @@ export default function WhoWeAre() {
               className="w-full mb-8 items-start text-left flex flex-row self-baseline"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.7 }}
-              variants={staggerContainer}
+              viewport={{ once: true, amount: 0.3 }}
+              variants={headingGlow}
             >
               <div className="flex flex-row gap-2 items-baseline">
                 <motion.span
-                  className="text-[30px] sm:text-[45px] align-baseline"
+                  className="text-[30px] sm:text-[45px] align-baseline cursor-pointer"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -610,12 +901,13 @@ export default function WhoWeAre() {
                     lineHeight: 1,
                     display: "inline-block",
                   }}
-                  variants={fadeInUp}
+                  variants={numberReveal}
+                  whileHover={numberGlow.hover}
                 >
                   04
                 </motion.span>
                 <motion.span
-                  className="text-[36px] sm:text-[70px] align-baseline"
+                  className="text-[36px] sm:text-[70px] align-baseline cursor-pointer"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -624,19 +916,21 @@ export default function WhoWeAre() {
                     lineHeight: 1,
                     display: "inline-block",
                   }}
-                  variants={fadeInUp}
+                  variants={numberReveal}
+                  whileHover={numberGlow.hover}
                 >
                   the
                 </motion.span>
                 <motion.span
-                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline"
+                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline cursor-pointer"
                   style={{
                     fontFamily: "Averta CY",
                     fontWeight: 700,
                     lineHeight: 1.1,
                     wordWrap: "break-word",
                   }}
-                  variants={fadeInUp}
+                  variants={wordReveal}
+                  whileHover={headingHover.hover}
                 >
                   rhythm.
                 </motion.span>
@@ -645,7 +939,7 @@ export default function WhoWeAre() {
 
             <motion.div
               className="flex flex-col items-start justify-start w-full"
-              variants={staggerContainer}
+              variants={contentSlideUp}
             >
               {[
                 "TASE was built on consistency, not chaos. But we've never believed in rigid routines. Our rhythm blends discipline with freedom — we stay focused when it counts, and unstructured when it fuels creativity.",
@@ -659,7 +953,7 @@ export default function WhoWeAre() {
                   style={{
                     fontFamily: "Outfit, Montserrat, Comfortaa, sans-serif",
                   }}
-                  variants={fadeInUp}
+                  variants={paragraphReveal}
                 >
                   {text}
                 </motion.div>
@@ -676,19 +970,23 @@ export default function WhoWeAre() {
             style={{ y: rhythmParallax }}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.7 }}
-            variants={fadeInScale}
+            viewport={{ once: true, amount: 0.3 }}
+            variants={scaleIn}
           >
-            <img
+            <motion.img
               src="/TASE DEVS 2-min.png"
               alt="TASE office"
-              className="hidden sm:block object-cover rounded-[2px] shadow w-full md:h-[220px] lg:sticky lg:top-32 lg:w-[900px] lg:h-[420px]"
+              className="hidden sm:block object-cover rounded-[2px] shadow w-full md:h-[220px] lg:sticky lg:top-32 lg:w-[900px] lg:h-[420px] cursor-pointer"
+              variants={fadeInScale}
+              whileHover={imageHover.hover}
             />
             {/* Mobile fallback */}
-            <img
+            <motion.img
               src="/TASE DEVS 2-min.png"
               alt="TASE office"
-              className="w-full h-auto object-cover shadow sm:hidden"
+              className="w-full h-auto object-cover shadow sm:hidden cursor-pointer"
+              variants={fadeInScale}
+              whileHover={imageHover.hover}
             />
           </motion.div>
         </div>
@@ -698,7 +996,7 @@ export default function WhoWeAre() {
           className="flex flex-col items-center justify-center w-full mb-8 lg:mt-[120px]"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.7 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={staggerContainer}
         >
           <div className="max-w-4xl px-4 w-full">
@@ -707,12 +1005,12 @@ export default function WhoWeAre() {
               className="w-full mb-8 items-start text-left flex flex-row self-baseline"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.7 }}
-              variants={staggerContainer}
+              viewport={{ once: true, amount: 0.3 }}
+              variants={headingGlow}
             >
               <div className="flex flex-row gap-2 items-baseline">
                 <motion.span
-                  className="text-[30px] sm:text-[45px] align-baseline"
+                  className="text-[30px] sm:text-[45px] align-baseline cursor-pointer"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -721,12 +1019,13 @@ export default function WhoWeAre() {
                     lineHeight: 1,
                     display: "inline-block",
                   }}
-                  variants={fadeInUp}
+                  variants={numberReveal}
+                  whileHover={numberGlow.hover}
                 >
                   05
                 </motion.span>
                 <motion.span
-                  className="text-[36px] sm:text-[70px] align-baseline"
+                  className="text-[36px] sm:text-[70px] align-baseline cursor-pointer"
                   style={{
                     fontFamily: "'Outfit', 'Montserrat', sans-serif",
                     color: "transparent",
@@ -735,19 +1034,21 @@ export default function WhoWeAre() {
                     lineHeight: 1,
                     display: "inline-block",
                   }}
-                  variants={fadeInUp}
+                  variants={numberReveal}
+                  whileHover={numberGlow.hover}
                 >
                   the
                 </motion.span>
                 <motion.span
-                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline"
+                  className="text-[40px] sm:text-[96px] font-extrabold text-[#222] leading-none align-baseline cursor-pointer"
                   style={{
                     fontFamily: "Averta CY",
                     fontWeight: 700,
                     lineHeight: 1.1,
                     wordWrap: "break-word",
                   }}
-                  variants={fadeInUp}
+                  variants={wordReveal}
+                  whileHover={headingHover.hover}
                 >
                   process.
                 </motion.span>
@@ -756,7 +1057,7 @@ export default function WhoWeAre() {
 
             <motion.div
               className="flex flex-col items-start justify-start w-full"
-              variants={staggerContainer}
+              variants={contentSlideUp}
             >
               {[
                 "Our process is simple — but never basic. Every project starts with listening: to the client, the challenge, and the opportunity beneath the surface.",
@@ -769,7 +1070,7 @@ export default function WhoWeAre() {
                   style={{
                     fontFamily: "Outfit, Montserrat, Comfortaa, sans-serif",
                   }}
-                  variants={fadeInUp}
+                  variants={paragraphReveal}
                 >
                   {text}
                 </motion.div>
@@ -778,80 +1079,120 @@ export default function WhoWeAre() {
           </div>
         </motion.div>
 
-        {/* Marquee/Carousel */}
-        <div className="w-full mt-10 mb-20 flex flex-col gap-8">
-          <div
-            className="overflow-x-hidden whitespace-nowrap w-full mb-4"
+        {/* Carousel/Marquee */}
+        <motion.div
+          className="w-full mt-6 sm:mt-8 mb-8 sm:mb-12 flex flex-col bg-[#f7f7f7] gap-4 sm:gap-6 relative"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={staggerContainer}
+        >
+          {/* Fade overlay for left edge */}
+          <div className="absolute left-0 top-0 w-8 sm:w-12 md:w-16 lg:w-20 h-full bg-gradient-to-r from-[#f7f7f7] to-transparent z-10 pointer-events-none"></div>
+
+          {/* Fade overlay for right edge */}
+          <div className="absolute right-0 top-0 w-8 sm:w-12 md:w-16 lg:w-20 h-full bg-gradient-to-l from-[#f7f7f7] to-transparent z-10 pointer-events-none"></div>
+
+          <motion.div
+            className="overflow-x-hidden whitespace-nowrap w-full mb-3 sm:mb-4 relative"
             style={{ willChange: "transform" }}
+            variants={floatIn}
           >
             <div className="inline-block animate-marquee-left">
-              {[1, 2].map((_, idx) => (
-                <span key={idx} className="inline-flex gap-6">
-                  <img
+              {Array.from({ length: 20 }, (_, idx) => (
+                <span
+                  key={idx}
+                  className="inline-flex gap-3 sm:gap-4 md:gap-5 lg:gap-6"
+                >
+                  <motion.img
                     src="/About/1-min.png"
                     alt="Project 1"
-                    className="w-[220px] h-[120px] object-cover rounded-[12px] inline-block"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    whileHover={imageHover.hover}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
-                  <img
+                  <motion.img
                     src="/About/2-min.png"
                     alt="Project 2"
-                    className="w-[220px] h-[120px] object-cover rounded-[12px] inline-block"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    whileHover={imageHover.hover}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
-                  <img
+                  <motion.img
                     src="/About/3-min.png"
                     alt="Project 3"
-                    className="w-[220px] h-[120px] object-cover rounded-[12px] inline-block"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    whileHover={imageHover.hover}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
-                  <img
+                  <motion.img
                     src="/About/4-min.png"
                     alt="Project 4"
-                    className="w-[220px] h-[120px] object-cover rounded-[12px] inline-block"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    whileHover={imageHover.hover}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
-                  <img
+                  <motion.img
                     src="/About/5-min.png"
                     alt="Project 5"
-                    className="w-[220px] h-[120px] object-cover rounded-[12px] inline-block mr-10"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block mr-10 cursor-pointer"
+                    whileHover={imageHover.hover}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </span>
               ))}
             </div>
-          </div>
-          <div
-            className="overflow-x-hidden whitespace-nowrap w-full"
+          </motion.div>
+          <motion.div
+            className="overflow-x-hidden whitespace-nowrap w-full relative"
             style={{ willChange: "transform" }}
+            variants={floatIn}
           >
             <div className="inline-block animate-marquee-right">
-              {[1, 2].map((_, idx) => (
-                <span key={idx} className="inline-flex gap-6">
-                  <img
+              {Array.from({ length: 20 }, (_, idx) => (
+                <span
+                  key={idx}
+                  className="inline-flex gap-3 sm:gap-4 md:gap-5 lg:gap-6"
+                >
+                  <motion.img
                     src="/About/6-min.png"
                     alt="Project 6"
-                    className="w-[220px] h-[120px] object-cover rounded-[12px] inline-block"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    whileHover={imageHover.hover}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
-                  <img
+                  <motion.img
                     src="/About/7-min.png"
                     alt="Project 7"
-                    className="w-[220px] h-[120px] object-cover rounded-[12px] inline-block"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    whileHover={imageHover.hover}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
-                  <img
+                  <motion.img
                     src="/About/8-min.png"
                     alt="Project 8"
-                    className="w-[220px] h-[120px] object-cover rounded-[12px] inline-block"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    whileHover={imageHover.hover}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
-                  <img
+                  <motion.img
                     src="/About/9-min.png"
                     alt="Project 9"
-                    className="w-[220px] h-[120px] object-cover rounded-[12px] inline-block"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block cursor-pointer"
+                    whileHover={imageHover.hover}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
-                  <img
+                  <motion.img
                     src="/About/10-min.png"
                     alt="Project 10"
-                    className="w-[220px] h-[120px] object-cover rounded-[12px] inline-block mr-10"
+                    className="w-[160px] h-[96px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[130px] lg:w-[280px] lg:h-[160px] object-cover rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[12px] inline-block mr-10 cursor-pointer"
+                    whileHover={imageHover.hover}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </span>
               ))}
             </div>
-          </div>
+          </motion.div>
           <style>{`
             @keyframes marquee-left {
               0% { transform: translateX(0); }
@@ -861,21 +1202,45 @@ export default function WhoWeAre() {
               0% { transform: translateX(-50%); }
               100% { transform: translateX(0); }
             }
+            @keyframes float {
+              0%, 100% { transform: translateY(0px); }
+              50% { transform: translateY(-10px); }
+            }
+            @keyframes pulse-glow {
+              0%, 100% { box-shadow: 0 0 20px rgba(0, 230, 199, 0.3); }
+              50% { box-shadow: 0 0 30px rgba(0, 230, 199, 0.6); }
+            }
             .animate-marquee-left {
-              animation: marquee-left 10s linear infinite;
+              animation: marquee-left 25s linear infinite;
               will-change: transform;
             }
             .animate-marquee-right {
-              animation: marquee-right 10s linear infinite;
+              animation: marquee-right 25s linear infinite;
               will-change: transform;
+            }
+            .animate-float {
+              animation: float 3s ease-in-out infinite;
+            }
+            .animate-pulse-glow {
+              animation: pulse-glow 2s ease-in-out infinite;
+            }
+            @media (max-width: 640px) {
+              .animate-marquee-left, .animate-marquee-right {
+                animation-duration: 20s;
+              }
             }
             @media (max-width: 768px) {
               .animate-marquee-left, .animate-marquee-right {
-                animation-duration: 6s;
+                animation-duration: 18s;
+              }
+            }
+            @media (max-width: 1024px) {
+              .animate-marquee-left, .animate-marquee-right {
+                animation-duration: 22s;
               }
             }
           `}</style>
-        </div>
+        </motion.div>
         <BookingSection />
         <Footer />
       </section>
