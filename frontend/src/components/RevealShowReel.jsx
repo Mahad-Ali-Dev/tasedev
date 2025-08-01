@@ -178,7 +178,7 @@ function RevealShowreel() {
         >
           <video
             ref={videoRef}
-            src="/test.mp4"
+            src="/reel.mp4"
             autoPlay={false}
             loop
             muted
