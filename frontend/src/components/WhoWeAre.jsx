@@ -690,9 +690,9 @@ export default function WhoWeAre() {
               {
                 name: "Abdul Rehman",
                 img: "/profiles/abdulrehman-min.png",
-                role: "Chief Technology Officer",
+                role: "Co-Founder & CTO",
                 description:
-                  "Oversees all things tech — from system architecture to performance. Drives innovation and ensures seamless, scalable development.",
+                  "Co-Founder shaping the tech core. Drives innovation, architecture, and future-ready solutions across every build.",
               },
               {
                 name: "Muhammad Abubakar",
