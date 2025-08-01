@@ -92,7 +92,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2500); // 0.5+0.5+0.5+1.0 = 2.5s
+    const timer = setTimeout(() => setLoading(false), 2500); 
     return () => clearTimeout(timer);
   }, []);
 
@@ -114,9 +114,19 @@ function App() {
               <Route
                 path="*"
                 element={
-                  <div className="text-center text-2xl mt-20">
-                    404 — Page Not Found
-                  </div>
+                  <div className="flex flex-col items-center justify-center mt-32 text-center px-4">
+                  <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>
+                  <p className="text-2xl text-gray-700 mb-2">Page Not Found</p>
+                  <p className="text-md text-gray-500 max-w-md">
+                    The page you’re looking for doesn’t exist or has been moved. Try heading back to the homepage.
+                  </p>
+                  <a
+                    href="/"
+                    className="mt-6 inline-block px-6 py-2 text-white bg-black rounded-full shadow-md hover:bg-gray-800 transition duration-300"
+                  >
+                    Go Home
+                  </a>
+                </div>
                 }
               />
             </Routes>
