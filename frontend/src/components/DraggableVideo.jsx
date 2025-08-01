@@ -4,7 +4,7 @@ import Draggable from "gsap/Draggable";
 
 gsap.registerPlugin(Draggable);
 
-function DraggableVideo({ src = "/navbar-video.mp4", className = "" }) {
+function DraggableVideo({ src = "/reel.mp4", className = "" }) {
   return (
     <video
       src={src}
@@ -46,7 +46,7 @@ function DraggableMenuVideo() {
         style={{ touchAction: "none" }}
       >
         <video
-          src="/navbar-video.mp4"
+          src="/reel.mp4"
           autoPlay
           loop
           muted
