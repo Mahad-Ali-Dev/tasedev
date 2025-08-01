@@ -207,43 +207,34 @@ export default function WhatWeBuild() {
           </motion.h4>
         </motion.div>
 
-        {/* Hero Video with Hashtag Overlay */}
+        {/* Hero Video Container */}
         <motion.div
-          className="w-full px-4 mb-10 sm:mb-16"
+          className="w-[95vw] mx-auto relative overflow-hidden rounded-lg"
+          style={{
+            backgroundColor: "#F7F7F7",
+            aspectRatio: "21/9",
+            maxHeight: "60vh",
+          }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={scaleIn}
         >
-          <div className="w-full flex justify-center items-center bg-[#00e6c7] relative overflow-hidden min-h-[300px] sm:min-h-[400px] md:min-h-[500px] rounded-xl">
-            <motion.video
-              src="/reel.mp4"
-              className="absolute inset-0 w-full h-full object-cover rounded-xl cursor-pointer"
-              style={{ filter: "brightness(0.85) contrast(1.1)" }}
-              autoPlay
-              loop
-              muted
-              playsInline
-              variants={fadeInScale}
-              whileHover={{
-                scale: 1.05,
-                filter: "brightness(0.9) contrast(1.2)",
-                transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-              }}
-            />
-            <motion.span
-              className="absolute left-1/2 bottom-6 sm:bottom-8 md:bottom-10 -translate-x-1/2 text-white font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl drop-shadow-lg select-none z-10 cursor-pointer"
-              style={{ letterSpacing: "-0.04em" }}
-              variants={bounceIn}
-              whileHover={{
-                scale: 1.15,
-                textShadow: "0 0 40px rgba(255,255,255,0.9)",
-                transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-              }}
-            >
-              #stylistic
-            </motion.span>
-          </div>
+          <motion.video
+            src="/reel.mp4"
+            className="w-full h-full object-cover rounded-lg"
+            style={{ filter: "brightness(0.85) contrast(1.1)" }}
+            autoPlay
+            loop
+            muted
+            playsInline
+            variants={fadeInScale}
+            whileHover={{
+              scale: 1.05,
+              filter: "brightness(0.9) contrast(1.2)",
+              transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+            }}
+          />
         </motion.div>
 
         <motion.h4
