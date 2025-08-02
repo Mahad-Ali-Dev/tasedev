@@ -683,7 +683,7 @@ export default function WhoWeAre() {
               {
                 name: "Mahad Ali",
                 img: "/profiles/mahad-min.png",
-                role: "Chief Executive Officer",
+                role: "Co-Founder & CEO",
                 description:
                   "Visionary behind TASE. Leads strategy, creative direction, and client relationships with a focus on delivering bold digital experiences.",
               },
@@ -697,7 +697,7 @@ export default function WhoWeAre() {
               {
                 name: "Muhammad Abubakar",
                 img: "/profiles/abubakar-min.png",
-                role: "Head of Operations & Finance",
+                role: "Co-Founder & CFO",
                 description:
                   "Keeps the engine running. Manages timelines, finances, and internal workflows to ensure every project stays sharp and on track.",
               },
